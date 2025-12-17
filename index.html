@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KNOWLEDGE_IS_POWER</title>
+  <title>Lückensätze – Wohnen</title>
   <style>
     html, body {
       margin: 0;
@@ -18,6 +18,12 @@
       touch-action: pan-x;
     }
 
+.scroll-spacer {
+  height: 300px;   /* wenn du willst: 200–400px */
+  width: 100%;
+}
+
+
     img.logo {
       width: 120px;
       margin-top: 20px;
@@ -25,7 +31,7 @@
 
     .start-screen, .question-screen, .result-screen {
       display: none;
-      height: 100vh;
+      height: 100vh; 
       justify-content: center;
       align-items: center;
       flex-direction: column;
@@ -124,15 +130,28 @@
       background-color: #777;
     }
 
-    .result-screen {
-      display: none;
-      height: 100vh;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      padding: 20px;
-      overflow-y: auto; /* ✨ Scrollen nur auf Auswertungsseite erlauben */
-    }
+.result-screen {
+  display: none;
+  position: fixed;
+  inset: 0;                    /* ganzer Bildschirm */
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  padding-bottom: 140px;
+}
+
+/* 👇 NUR für die Resultatsseite */
+.result-screen.is-visible {
+  display: flex;
+ height: 100vh; 
+  overflow-y: auto;            /* echte Scroll-Fläche */
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;         /* vertikal scrollen erlauben */
+ overscroll-behavior: contain;
+}
+
+
 
     .result-screen h2 {
       font-size: 1.5em;
@@ -177,11 +196,12 @@
       text-decoration: none;
       font-size: 1.5em;
     }
+
   </style>
 </head>
 <body>
   <div class="start-screen">
-    <img src="logo.png" alt="Logo" class="logo">
+    <img src="logoo.png" alt="Logo" class="logo">
     <h1>Swipe left or right!</h1>
     <button class="start-button" onclick="startQuiz()">Los geht’s!</button>
   </div>
@@ -204,151 +224,188 @@
       <a href="https://www.jazzupyourgerman.com" target="_blank">🌐</a>
       <a href="https://www.instagram.com/jazzupyourgerman/" target="_blank">📸</a>
     </div>
+<div class="scroll-spacer"></div>
+
   </div>
 <script>
-const questions = [
-  { "text": "El marketing se define como:", "options": ["Proceso de intercambio para satisfacer necesidades", "Sinónimo de publicidad", "Estrategia de producción masiva", "Política de precios bajos"], "correct": 0 },
-  { "text": "¿Qué es una necesidad?", "options": ["Algo cultural", "Una carencia básica", "Un lujo", "Un deseo específico"], "correct": 1 },
-  { "text": "Diferencia entre deseo y necesidad:", "options": ["Deseo = cultural, necesidad = biológica", "Deseo = básico, necesidad = secundario", "Son lo mismo", "Ninguna correcta"], "correct": 0 },
-  { "text": "¿Qué significa demanda?", "options": ["Deseo respaldado por poder adquisitivo", "Carencia fisiológica", "Proceso de producción", "Preferencia cultural"], "correct": 0 },
-  { "text": "¿Cuál de estos es un ejemplo de producto tangible?", "options": ["Consultoría", "Vacaciones", "Smartphone", "Curso online"], "correct": 2 },
-  { "text": "¿Qué es el valor para el cliente?", "options": ["Precio más bajo", "Diferencia entre beneficios percibidos y costos", "Utilidad de la empresa", "Ganancia bruta"], "correct": 1 },
-  { "text": "El intercambio implica:", "options": ["Entrega de bienes sin recibir nada", "Transferencia unilateral", "Obtención de valor a cambio de algo", "Competencia entre empresas"], "correct": 2 },
-  { "text": "¿Qué significa mercado?", "options": ["Un lugar físico para vender", "Conjunto de compradores actuales y potenciales", "Supermercado", "Solo los distribuidores"], "correct": 1 },
-  { "text": "Orientación al consumidor significa:", "options": ["Producción en masa", "Publicidad agresiva", "Conocer y satisfacer necesidades mejor que la competencia", "Precios bajos"], "correct": 2 },
-  { "text": "La filosofía del marketing social combina:", "options": ["Ventas rápidas + menor costo", "Satisfacción del cliente + bienestar social + utilidades", "Innovación + expansión internacional", "Publicidad + promociones"], "correct": 1 },
-  { "text": "Marketing relacional significa:", "options": ["Fidelizar clientes a largo plazo", "Hacer rebajas", "Aumentar cobertura en medios", "Distribuir en más canales"], "correct": 0 },
-  { "text": "CRM significa:", "options": ["Gestión de inventarios", "Customer Relationship Management", "Control de recursos materiales", "Campaña de Responsabilidad de Marketing"], "correct": 1 },
-  { "text": "Marketing de servicios implica:", "options": ["Solo productos físicos", "Enfoque en intangibles, inseparabilidad y perecibilidad", "Vender con descuentos", "Eliminar intermediarios"], "correct": 1 },
-  { "text": "Diferencia entre producto y servicio:", "options": ["Producto = tangible, servicio = intangible", "No existe", "Servicio es un producto físico", "Producto siempre es digital"], "correct": 0 },
-  { "text": "El concepto de satisfacción del cliente implica:", "options": ["Superar expectativas", "Precio más bajo", "Comprar en más puntos de venta", "Entrega rápida únicamente"], "correct": 0 },
-  { "text": "El entorno micro incluye:", "options": ["Competidores, clientes, proveedores, intermediarios", "Tendencias culturales globales", "Políticas gubernamentales internacionales", "Avances tecnológicos"], "correct": 0 },
-  { "text": "El entorno macro incluye:", "options": ["Fuerzas demográficas, económicas, naturales, tecnológicas, políticas y culturales", "Clientes directos", "Distribuidores", "CRM"], "correct": 0 },
-  { "text": "¿Qué significa PESTEL?", "options": ["Modelo de segmentación", "Análisis del entorno político, económico, social, tecnológico, ecológico y legal", "Estrategia de ventas", "Mezcla promocional"], "correct": 1 },
-  { "text": "Ejemplo de entorno demográfico:", "options": ["Tasas de natalidad", "Competidores directos", "Políticas de precios", "Proveedores locales"], "correct": 0 },
-  { "text": "Un cambio tecnológico impacta en:", "options": ["Producción, comunicación y distribución", "Únicamente en precios", "Solo en ventas", "Ninguna"], "correct": 0 },
-  { "text": "¿Qué incluye el microentorno?", "options": ["Clientes, intermediarios, competencia", "Clima, leyes y política", "Tendencias sociales", "Demografía mundial"], "correct": 0 },
-  { "text": "El análisis de competencia se centra en:", "options": ["Evaluar fortalezas y debilidades de rivales", "Analizar clima político", "Segmentar geográficamente", "Reducir inventarios"], "correct": 0 },
-  { "text": "Una tendencia cultural es:", "options": ["Cambio en estilos de vida o valores", "Variación en costos de producción", "Estrategia de precios", "Políticas fiscales"], "correct": 0 },
-  { "text": "El entorno económico afecta porque:", "options": ["Determina poder adquisitivo de los consumidores", "Cambia la cultura", "Modifica los canales", "No influye"], "correct": 0 },
-  { "text": "Un ejemplo de entorno natural es:", "options": ["Escasez de recursos", "Redes sociales", "Demografía", "CRM"], "correct": 0 },
-  { "text": "Segmentar significa:", "options": ["Dividir el mercado en grupos homogéneos", "Distribuir en más canales", "Aumentar producción", "Reducir precios"], "correct": 0 },
-  { "text": "Ejemplo de segmentación geográfica:", "options": ["Países y regiones", "Nivel de ingresos", "Estilo de vida", "Beneficios buscados"], "correct": 0 },
-  { "text": "Ejemplo de segmentación demográfica:", "options": ["Edad, género, ingresos", "Estilo de vida", "Valores culturales", "Personalidad"], "correct": 0 },
-  { "text": "Ejemplo de segmentación psicográfica:", "options": ["Actitudes, intereses, valores", "Ingresos", "Ubicación", "Tamaño de familia"], "correct": 0 },
-  { "text": "Ejemplo de segmentación conductual:", "options": ["Frecuencia de compra, beneficios buscados, lealtad", "Nivel educativo", "Estilo de vida", "Región"], "correct": 0 },
-  { "text": "Un mercado meta es:", "options": ["Grupo de clientes al que se dirige la estrategia", "Todo el mercado", "Solo distribuidores", "Proveedores"], "correct": 0 },
-  { "text": "Estrategia de cobertura de mercado total:", "options": ["Marketing indiferenciado", "Marketing concentrado", "Micromarketing", "Ninguna"], "correct": 0 },
-  { "text": "Estrategia de marketing diferenciado:", "options": ["Diseñar ofertas específicas para varios segmentos", "Vender a un solo segmento", "Ignorar las diferencias", "Dirigirse solo a micro nichos"], "correct": 0 },
-  { "text": "Estrategia de marketing concentrado:", "options": ["Dirigirse a un único segmento", "Captar todo el mercado", "Publicidad masiva", "Ninguna"], "correct": 0 },
-  { "text": "Micromarketing significa:", "options": ["Adaptar productos a nichos o incluso clientes individuales", "Estrategia global", "Producción en masa", "Publicidad masiva"], "correct": 0 },
-  { "text": "Posicionamiento es:", "options": ["Imagen que ocupa un producto en la mente del consumidor", "Número de tiendas", "Estrategia de precios", "Red de distribución"], "correct": 0 },
-  { "text": "El mapa perceptual sirve para:", "options": ["Visualizar la posición de marcas en la mente del consumidor", "Planificar producción", "Calcular inventario", "Medir costos"], "correct": 0 },
-  { "text": "Diferenciación de producto significa:", "options": ["Ofrecer características únicas frente a competidores", "Igualar precios", "Masificar producción", "Reducir canales"], "correct": 0 },
-  { "text": "Ejemplo de posicionamiento por beneficios:", "options": ["Pasta dental que protege encías", "Producto más barato del mercado", "Marca líder en ventas", "Producto disponible en todas las tiendas"], "correct": 0 },
-  { "text": "Ejemplo de posicionamiento por precio:", "options": ["Aerolínea low-cost", "Café gourmet", "Teléfono de lujo", "Reloj premium"], "correct": 0 },
-  { "text": "Marketing relacional significa:", "options": ["Fidelizar clientes a largo plazo", "Hacer rebajas", "Aumentar cobertura en medios", "Distribuir en más canales"], "correct": 0 },
-  { "text": "CRM significa:", "options": ["Gestión de inventarios", "Customer Relationship Management", "Control de recursos materiales", "Campaña de Responsabilidad de Marketing"], "correct": 1 },
-  { "text": "Marketing de servicios implica:", "options": ["Solo productos físicos", "Enfoque en intangibles, inseparabilidad y perecibilidad", "Vender con descuentos", "Eliminar intermediarios"], "correct": 1 },
-  { "text": "Diferencia entre producto y servicio:", "options": ["Producto = tangible, servicio = intangible", "No existe", "Servicio es un producto físico", "Producto siempre es digital"], "correct": 0 },
-  { "text": "El concepto de satisfacción del cliente implica:", "options": ["Superar expectativas", "Precio más bajo", "Comprar en más puntos de venta", "Entrega rápida únicamente"], "correct": 0 },
-  { "text": "El entorno micro incluye:", "options": ["Competidores, clientes, proveedores, intermediarios", "Tendencias culturales globales", "Políticas gubernamentales internacionales", "Avances tecnológicos"], "correct": 0 },
-  { "text": "El entorno macro incluye:", "options": ["Fuerzas demográficas, económicas, naturales, tecnológicas, políticas y culturales", "Clientes directos", "Distribuidores", "CRM"], "correct": 0 },
-  { "text": "¿Qué significa PESTEL?", "options": ["Modelo de segmentación", "Análisis del entorno político, económico, social, tecnológico, ecológico y legal", "Estrategia de ventas", "Mezcla promocional"], "correct": 1 },
-  { "text": "Ejemplo de entorno demográfico:", "options": ["Tasas de natalidad", "Competidores directos", "Políticas de precios", "Proveedores locales"], "correct": 0 },
-  { "text": "Un cambio tecnológico impacta en:", "options": ["Producción, comunicación y distribución", "Únicamente en precios", "Solo en ventas", "Ninguna"], "correct": 0 },
-  { "text": "¿Qué incluye el microentorno?", "options": ["Clientes, intermediarios, competencia", "Clima, leyes y política", "Tendencias sociales", "Demografía mundial"], "correct": 0 },
-  { "text": "El análisis de competencia se centra en:", "options": ["Evaluar fortalezas y debilidades de rivales", "Analizar clima político", "Segmentar geográficamente", "Reducir inventarios"], "correct": 0 },
-  { "text": "Una tendencia cultural es:", "options": ["Cambio en estilos de vida o valores", "Variación en costos de producción", "Estrategia de precios", "Políticas fiscales"], "correct": 0 },
-  { "text": "El entorno económico afecta porque:", "options": ["Determina poder adquisitivo de los consumidores", "Cambia la cultura", "Modifica los canales", "No influye"], "correct": 0 },
-  { "text": "Un ejemplo de entorno natural es:", "options": ["Escasez de recursos", "Redes sociales", "Demografía", "CRM"], "correct": 0 },
-  { "text": "Segmentar significa:", "options": ["Dividir el mercado en grupos homogéneos", "Distribuir en más canales", "Aumentar producción", "Reducir precios"], "correct": 0 },
-  { "text": "Ejemplo de segmentación geográfica:", "options": ["Países y regiones", "Nivel de ingresos", "Estilo de vida", "Beneficios buscados"], "correct": 0 },
-  { "text": "Ejemplo de segmentación demográfica:", "options": ["Edad, género, ingresos", "Estilo de vida", "Valores culturales", "Personalidad"], "correct": 0 },
-  { "text": "Ejemplo de segmentación psicográfica:", "options": ["Actitudes, intereses, valores", "Ingresos", "Ubicación", "Tamaño de familia"], "correct": 0 },
-  { "text": "Ejemplo de segmentación conductual:", "options": ["Frecuencia de compra, beneficios buscados, lealtad", "Nivel educativo", "Estilo de vida", "Región"], "correct": 0 },
-  { "text": "Un mercado meta es:", "options": ["Grupo de clientes al que se dirige la estrategia", "Todo el mercado", "Solo distribuidores", "Proveedores"], "correct": 0 },
-  { "text": "Estrategia de cobertura de mercado total:", "options": ["Marketing indiferenciado", "Marketing concentrado", "Micromarketing", "Ninguna"], "correct": 0 },
-  { "text": "Estrategia de marketing diferenciado:", "options": ["Diseñar ofertas específicas para varios segmentos", "Vender a un solo segmento", "Ignorar las diferencias", "Dirigirse solo a micro nichos"], "correct": 0 },
-  { "text": "Estrategia de marketing concentrado:", "options": ["Dirigirse a un único segmento", "Captar todo el mercado", "Publicidad masiva", "Ninguna"], "correct": 0 },
-  { "text": "Micromarketing significa:", "options": ["Adaptar productos a nichos o incluso clientes individuales", "Estrategia global", "Producción en masa", "Publicidad masiva"], "correct": 0 },
-  { "text": "Posicionamiento es:", "options": ["Imagen que ocupa un producto en la mente del consumidor", "Número de tiendas", "Estrategia de precios", "Red de distribución"], "correct": 0 },
-  { "text": "El mapa perceptual sirve para:", "options": ["Visualizar la posición de marcas en la mente del consumidor", "Planificar producción", "Calcular inventario", "Medir costos"], "correct": 0 },
-  { "text": "Diferenciación de producto significa:", "options": ["Ofrecer características únicas frente a competidores", "Igualar precios", "Masificar producción", "Reducir canales"], "correct": 0 },
-  { "text": "Ejemplo de posicionamiento por beneficios:", "options": ["Pasta dental que protege encías", "Producto más barato del mercado", "Marca líder en ventas", "Producto disponible en todas las tiendas"], "correct": 0 },
-  { "text": "Ejemplo de posicionamiento por precio:", "options": ["Aerolínea low-cost", "Café gourmet", "Teléfono de lujo", "Reloj premium"], "correct": 0 },
-  { "text": "La mezcla de marketing (4Ps) incluye:", "options": ["Producto, Precio, Plaza, Promoción", "Producción, Publicidad, Personas, Política", "Planificación, Precio, Publicidad, Plaza", "Producto, Proceso, Personas, Participación"], "correct": 0 },
-  { "text": "¿Qué significa producto en marketing?", "options": ["Todo lo que se ofrece al mercado para satisfacer una necesidad o deseo", "Solo bienes físicos", "Un servicio únicamente", "Publicidad"], "correct": 0 },
-  { "text": "Ejemplo de producto de conveniencia:", "options": ["Pan", "Automóvil", "Seguro de vida", "Casa"], "correct": 0 },
-  { "text": "Ejemplo de producto de comparación:", "options": ["Televisor", "Pan", "Revista", "Lámpara desechable"], "correct": 0 },
-  { "text": "Ejemplo de producto de especialidad:", "options": ["Automóvil de lujo", "Agua embotellada", "Cepillo de dientes", "Detergente"], "correct": 0 },
-  { "text": "Ejemplo de producto no buscado:", "options": ["Seguro de vida", "Pan", "Leche", "Pizza"], "correct": 0 },
-  { "text": "Ciclo de vida del producto incluye:", "options": ["Introducción, Crecimiento, Madurez, Declive", "Producción, Distribución, Venta, Postventa", "Diseño, Marketing, Publicidad, Venta", "Inicio, Proceso, Fin, Reposicionamiento"], "correct": 0 },
-  { "text": "En la fase de introducción el objetivo principal es:", "options": ["Dar a conocer el producto", "Maximizar ganancias", "Reducir costos", "Eliminar competencia"], "correct": 0 },
-  { "text": "En la fase de madurez las ventas:", "options": ["Se estabilizan o alcanzan su punto máximo", "Son inexistentes", "Son crecientes de forma rápida", "Descienden de inmediato"], "correct": 0 },
-  { "text": "En la fase de declive la empresa debe:", "options": ["Decidir retirar o reposicionar el producto", "Invertir más en publicidad", "Expandirse a nuevos mercados siempre", "Bajar precios únicamente"], "correct": 0 },
-  { "text": "El precio es:", "options": ["Cantidad de dinero que se cobra por un producto", "Valor percibido por el cliente", "El costo de producción únicamente", "Ganancia de la empresa"], "correct": 0 },
-  { "text": "La elasticidad de la demanda mide:", "options": ["Sensibilidad de la demanda al cambio de precio", "Número de clientes potenciales", "Capacidad de producción", "Ciclo de vida del producto"], "correct": 0 },
-  { "text": "Ejemplo de estrategia de precios psicológicos:", "options": ["Precio de $9.99", "Precio según costos", "Precio premium", "Precio por temporada"], "correct": 0 },
-  { "text": "La estrategia de descremado consiste en:", "options": ["Fijar precios altos inicialmente y luego bajarlos", "Ofrecer precios bajos desde el inicio", "Fijar precios iguales a la competencia", "Dar precios distintos por cliente"], "correct": 0 },
-  { "text": "La estrategia de penetración consiste en:", "options": ["Precios bajos para entrar en el mercado", "Precios altos para exclusividad", "Precios estables sin cambios", "Precios por subasta"], "correct": 0 },
-  { "text": "Un canal de distribución directo significa:", "options": ["La empresa vende sin intermediarios", "Usar mayoristas", "Usar minoristas", "Exportar a otro país"], "correct": 0 },
-  { "text": "Ejemplo de canal indirecto:", "options": ["Fabricante → Mayorista → Minorista → Consumidor", "Fabricante → Consumidor", "Tienda online propia", "Venta directa en tienda de la marca"], "correct": 0 },
-  { "text": "Funciones de los intermediarios:", "options": ["Reducir discrepancias de cantidad y tiempo", "Aumentar precios siempre", "Eliminar costos de transporte", "Evitar competencia"], "correct": 0 },
-  { "text": "La logística se encarga de:", "options": ["Planificación y control del flujo de bienes", "Publicidad", "Segmentación de mercados", "Posicionamiento"], "correct": 0 },
-  { "text": "Promoción significa:", "options": ["Comunicar valor del producto y persuadir clientes", "Bajar precios", "Distribuir productos", "Mejorar calidad"], "correct": 0 },
-  { "text": "Ejemplo de promoción de ventas:", "options": ["Cupones y descuentos", "Publicidad televisiva", "Relaciones públicas", "Diseño del producto"], "correct": 0 },
-  { "text": "La publicidad busca:", "options": ["Informar, persuadir y recordar sobre un producto", "Reducir inventarios", "Aumentar costos", "Evitar intermediarios"], "correct": 0 },
-  { "text": "Ejemplo de publicidad ATL:", "options": ["Televisión y radio", "Marketing en redes sociales", "Promoción en punto de venta", "Email personalizado"], "correct": 0 },
-  { "text": "Ejemplo de publicidad BTL:", "options": ["Eventos y activaciones", "Televisión nacional", "Revistas", "Periódicos"], "correct": 0 },
-  { "text": "Ejemplo de publicidad digital:", "options": ["Anuncios en redes sociales", "Carteles en autopistas", "Revistas impresas", "Radio"], "correct": 0 },
-  { "text": "Relaciones públicas buscan:", "options": ["Construir buena imagen de la empresa", "Vender directamente", "Reducir precios", "Eliminar intermediarios"], "correct": 0 },
-  { "text": "Marketing directo significa:", "options": ["Comunicación personalizada con clientes", "Publicidad masiva", "Venta en supermercados", "Distribución internacional"], "correct": 0 },
-  { "text": "Ejemplo de marketing directo:", "options": ["Email marketing", "Publicidad en TV", "Anuncio en periódico", "Cartel en vía pública"], "correct": 0 },
-  { "text": "La fuerza de ventas se refiere a:", "options": ["Equipo de vendedores que representan a la empresa", "Publicidad en medios", "Promoción digital", "Clientes potenciales"], "correct": 0 },
-  { "text": "Una característica del marketing digital es:", "options": ["Interactividad y personalización", "Solo se usa en TV", "Depende de intermediarios", "Es estático"], "correct": 0 },
-  { "text": "SEO significa:", "options": ["Search Engine Optimization", "Service Enterprise Organization", "Sales Executive Office", "Social Engagement Online"], "correct": 0 },
-  { "text": "SEM significa:", "options": ["Search Engine Marketing", "Social Email Marketing", "Sales Engagement Method", "Simple Electronic Media"], "correct": 0 },
-  { "text": "Ejemplo de estrategia de inbound marketing:", "options": ["Blogs y contenido de valor", "Llamadas en frío", "Publicidad en TV", "Carteles"], "correct": 0 },
-  { "text": "Ejemplo de estrategia de outbound marketing:", "options": ["Publicidad televisiva", "Blog educativo", "SEO", "Podcast informativo"], "correct": 0 },
-  { "text": "El marketing de contenidos se basa en:", "options": ["Generar y compartir contenido valioso para atraer clientes", "Promociones de precio", "Publicidad ATL", "Distribución física"], "correct": 0 },
-  { "text": "El marketing de influencers se apoya en:", "options": ["Personas con credibilidad en redes sociales", "Publicidad en periódicos", "Cuñas radiales", "Carteles"], "correct": 0 },
-  { "text": "El marketing experiencial busca:", "options": ["Generar vivencias memorables en el consumidor", "Reducir precios", "Expandirse a nuevos mercados", "Optimizar logística"], "correct": 0 },
-  { "text": "Un KPI en marketing es:", "options": ["Indicador clave de rendimiento", "Precio por unidad", "Número de distribuidores", "Política de inventarios"], "correct": 0 },
-  { "text": "Ejemplo de KPI digital:", "options": ["Tasa de conversión", "Número de camiones", "Cantidad de proveedores", "Costos fijos"], "correct": 0 },
-  { "text": "El marketing internacional se enfoca en:", "options": ["Estrategias para mercados extranjeros", "Solo en ventas locales", "Publicidad BTL", "Marketing directo"], "correct": 0 },
-  { "text": "Estandarización en marketing internacional significa:", "options": ["Ofrecer el mismo producto en todos los países", "Adaptar producto a cada mercado", "Reducir costos de producción", "Publicidad local"], "correct": 0 },
-  { "text": "Adaptación en marketing internacional significa:", "options": ["Modificar producto y mezcla para cada mercado", "Mantener producto idéntico", "Reducir precios globales", "Centralizar producción"], "correct": 0 },
-  { "text": "Ejemplo de marca global:", "options": ["Coca-Cola", "Panadería local", "Mercado de barrio", "Feria artesanal"], "correct": 0 },
-  { "text": "El branding busca:", "options": ["Construir y gestionar la marca", "Aumentar precio", "Eliminar competencia", "Mejorar logística"], "correct": 0 },
-  { "text": "Ejemplo de valor de marca:", "options": ["Preferencia de clientes hacia una marca reconocida", "Costo de producción", "Precio por unidad", "Número de tiendas"], "correct": 0 },
-  { "text": "El equity de marca significa:", "options": ["Valor intangible de la marca", "Gasto en publicidad", "Inventario disponible", "Número de empleados"], "correct": 0 },
-  { "text": "El marketing verde busca:", "options": ["Prácticas responsables con el medio ambiente", "Solo reducir precios", "Publicidad en TV", "Aumentar competencia"], "correct": 0 },
-  { "text": "El marketing social busca:", "options": ["Cambiar comportamientos en beneficio de la sociedad", "Aumentar ventas rápidas", "Optimizar logística", "Crear nuevos canales"], "correct": 0 },
-  { "text": "El marketing interno se centra en:", "options": ["Motivar y capacitar al personal de la empresa", "Publicidad masiva", "Clientes externos", "Intermediarios"], "correct": 0 },
-  { "text": "El marketing externo se dirige a:", "options": ["Clientes y mercado", "Empleados", "Proveedores internos", "Distribuidores propios"], "correct": 0 },
-  { "text": "El marketing interactivo ocurre entre:", "options": ["Empleado y cliente durante la prestación de servicio", "Empresa y proveedores", "Directivos y accionistas", "Competencia y clientes"], "correct": 0 },
-  { "text": "Las 7Ps del marketing de servicios incluyen:", "options": ["Producto, Precio, Plaza, Promoción, Personas, Procesos, Evidencia física", "Producto, Publicidad, Planificación, Personas, Política, Plaza, Precio", "Proceso, Plaza, Producto, Promoción, Política, Pago, Publicidad", "Producto, Precio, Plaza, Promoción, Política, Pago, Proveedores"], "correct": 0 },
-  { "text": "Ejemplo de evidencia física en servicios:", "options": ["Diseño del local", "Publicidad en TV", "Precio bajo", "Red de distribuidores"], "correct": 0 },
-  { "text": "Una ventaja del marketing digital es:", "options": ["Segmentación precisa", "Alcance limitado", "Alto costo fijo", "Dependencia exclusiva de intermediarios"], "correct": 0 },
-  { "text": "Un ejemplo de marketing viral es:", "options": ["Video compartido masivamente en redes sociales", "Publicidad en periódico", "Promoción en punto de venta", "Cartel en carretera"], "correct": 0 },
-  { "text": "El remarketing consiste en:", "options": ["Mostrar anuncios a usuarios que ya interactuaron con la marca", "Ofrecer descuentos masivos", "Marketing en ferias", "Optimizar logística"], "correct": 0 },
-  { "text": "El funnel de ventas describe:", "options": ["Etapas desde atracción hasta conversión", "Procesos de producción", "Logística interna", "Distribución física"], "correct": 0 },
-  { "text": "Ejemplo de etapa de consideración en el funnel:", "options": ["Comparación de alternativas", "Compra final", "Descubrimiento de necesidad", "Recomendación postventa"], "correct": 0 },
-  { "text": "Ejemplo de etapa de decisión en el funnel:", "options": ["Compra del producto", "Leer un blog", "Ver un anuncio", "Comparar opciones"], "correct": 0 },
-  { "text": "El concepto de customer journey significa:", "options": ["Recorrido del cliente desde el conocimiento hasta la fidelización", "Ruta logística", "Ciclo de vida del producto", "Plan de ventas"], "correct": 0 },
-];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const questions =
+
+
+[
+  {
+    "text": "Ich ___ fotografiert.",
+    "options": ["bin", "werde", "habe", "wurde"],
+    "correct": 1
+  },
+  {
+    "text": "Das Lied ___ von Madonna gesungen.",
+    "options": ["ist", "wird", "hat", "war"],
+    "correct": 1
+  },
+  {
+    "text": "Zwecks ___ gehe ich ins Gym.",
+    "options": ["fit", "Fitness", "sportlich", "fit zu sein"],
+    "correct": 1
+  },
+  {
+    "text": "Ich gehe ins Gym, um ___ zu sein.",
+    "options": ["Glück", "glücklich sein", "glückliche", "glücklich"],
+    "correct": 3
+  },
+  {
+    "text": "Ich bin wütend ___ dich.",
+    "options": ["gegen", "auf", "mit", "für"],
+    "correct": 1
+  },
+  {
+    "text": "Ich habe ___ Hunger ___ Durst.",
+    "options": ["sowohl / als auch", "entweder / oder", "weder / noch", "zwar / aber"],
+    "correct": 2
+  },
+  {
+    "text": "Ich mag ___ Kaffee ___ Tee.",
+    "options": ["weder / noch", "sowohl / als auch", "zwar / aber", "entweder / aber"],
+    "correct": 1
+  },
+  {
+    "text": "Heute Abend gehe ich ___ ins Kino ___ in die Schwimmhalle.",
+    "options": ["sowohl / als auch", "zwar / aber", "entweder / oder", "weder / noch"],
+    "correct": 2
+  },
+  {
+    "text": "Ich habe ___ schon Alkohol getrunken, ___ nie Heroin konsumiert.",
+    "options": ["weder / noch", "zwar / aber", "sowohl / als auch", "entweder / oder"],
+    "correct": 1
+  },
+  {
+    "text": "Ich bin sehr ___, die Prüfung ist vorbei.",
+    "options": ["verwirrend", "wütend", "erleichtert", "einsam"],
+    "correct": 2
+  },
+  {
+    "text": "Er lebt ___, aber er ist nicht ___.",
+    "options": ["einsam / allein", "allein / einsam", "allein / allein", "einsam / einsam"],
+    "correct": 1
+  },
+  {
+    "text": "Ich ___ meine Entscheidung.",
+    "options": ["hoffe", "zweifle", "bereue", "beende"],
+    "correct": 2
+  },
+  {
+    "text": "Darf ich dich ___ ein Brot bitten?",
+    "options": ["für", "mit", "um", "auf"],
+    "correct": 2
+  },
+  {
+    "text": "___ ich ein Brot bekommen?",
+    "options": ["Darf", "Dürfte", "Muss", "Kann"],
+    "correct": 1
+  },
+  {
+    "text": "Das ist jetzt ___ mir.",
+    "options": ["vor", "über", "zwischen", "hinter"],
+    "correct": 3
+  }
+]
+
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     let currentQuestion = 0;
     let score = 0;
     let incorrectAnswers = [];
     let userAnswers = [];
 
-    function startQuiz() {
-      document.querySelector('.start-screen').style.display = 'none';
-      document.querySelector('.question-screen').style.display = 'flex';
-      document.body.style.overflow = 'hidden'; // ✨ Scrollen verhindern
-      showQuestion();
-    }
+
+
+let mailPingImg = null;
+let startEventId = null;
+let startNotified = false;
+
+function notifyTeacherTestStarted() {
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyLqhiCn9pVFlInvh3wpgDbM77Y15511_NHQVvm71OjoieU2Vs7JL8BBEjcJT2h3GJ7Og/exec";
+  const SECRET = "SxhuleeerQuiz_2025_x98d76_22_MEINSECRET";
+
+  // ✅ pro Start genau eine Event-ID
+  if (!startEventId) {
+    startEventId =
+      (window.crypto && window.crypto.randomUUID)
+        ? window.crypto.randomUUID()
+        : Date.now() + "_" + Math.random();
+  }
+
+  const params = new URLSearchParams({
+    secret: SECRET,
+    studentName: "Stefan",
+    eventType: "start",
+    quizTitle: document.title,
+    pageUrl: window.location.href,
+    eventId: startEventId,
+    cb: Date.now() // ✅ Cache-Buster (wichtig für iOS)
+  });
+
+  const url = WEB_APP_URL + "?" + params.toString();
+
+  // ✅ EINZIGER & ZUVERLÄSSIGER WEG FÜR iPHONE
+  mailPingImg = new Image();
+  mailPingImg.src = url;
+}
+
+
+
+function startQuiz() {
+  if (!startNotified) {
+    startNotified = true;
+    notifyTeacherTestStarted();
+  }
+
+  // iOS: Request kurz “atmen lassen”, bevor wir den Screen hart umschalten
+  setTimeout(() => {
+    document.querySelector('.start-screen').style.display = 'none';
+    document.querySelector('.question-screen').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    showQuestion();
+  }, 200);
+}
+
+
+
 
     function showQuestion() {
       const container = document.getElementById('question-container');
@@ -418,26 +475,31 @@ const questions = [
       }
     }
 
-    function showResult() {
-      document.querySelector('.question-screen').style.display = 'none';
-      const resultScreen = document.querySelector('.result-screen');
-      resultScreen.style.display = 'flex';
-      document.body.style.overflow = 'auto'; // ✨ Scrollen auf Auswertungsseite erlauben
+function showResult() {
+  document.querySelector('.start-screen').style.display = 'none';
+  document.querySelector('.question-screen').style.display = 'none';
 
-      const scoreText = document.getElementById('score-text');
-      scoreText.textContent = `Du hast ${score} von ${questions.length} richtig.`;
+  const resultScreen = document.querySelector('.result-screen');
+  resultScreen.classList.add('is-visible');
+  resultScreen.scrollTop = 0;
 
-      const correctionList = document.getElementById('correction-list');
-      correctionList.innerHTML = '';
+  document.body.style.overflow = 'hidden';
 
-      questions.forEach((q, i) => {
-        const p = document.createElement('p');
-        const isCorrect = userAnswers[i] === q.correct;
-        const status = isCorrect ? "✅ Richtig" : `❌ Falsch – Richtige Antwort: ${q.options[q.correct]}`;
-        p.innerHTML = `<strong>Frage ${i + 1}:</strong> ${q.text.replace("___", "_____")}<br>${status}`;
-        correctionList.appendChild(p);
-      });
-    }
+  const scoreText = document.getElementById('score-text');
+  scoreText.textContent = `Du hast ${score} von ${questions.length} richtig.`;
+
+  const correctionList = document.getElementById('correction-list');
+  correctionList.innerHTML = '';
+
+  questions.forEach((q, i) => {
+    const p = document.createElement('p');
+    const isCorrect = userAnswers[i] === q.correct;
+    const status = isCorrect ? "✅ Richtig" : `❌ Falsch – Richtige Antwort: ${q.options[q.correct]}`;
+    p.innerHTML = `<strong>Frage ${i + 1}:</strong> ${q.text.replace("___", "_____")}<br>${status}`;
+    correctionList.appendChild(p);
+  });
+}
+
 
     function restartQuiz() {
       currentQuestion = 0;
@@ -445,9 +507,16 @@ const questions = [
       incorrectAnswers = [];
       userAnswers = [];
 
-      document.querySelector('.result-screen').style.display = 'none';
-      document.querySelector('.start-screen').style.display = 'flex';
-      document.body.style.overflow = 'hidden'; // ✨ Scrollen wieder deaktivieren
+const resultScreen = document.querySelector('.result-screen');
+resultScreen.classList.remove('is-visible');
+resultScreen.style.display = 'none'; 
+resultScreen.scrollTop = 0;
+
+document.querySelector('.start-screen').style.display = 'flex';
+document.querySelector('.question-screen').style.display = 'none';
+document.body.style.overflow = 'hidden';
+
+
     }
 
     // Swipe gesture support
