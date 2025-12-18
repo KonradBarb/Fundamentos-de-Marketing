@@ -151,6 +151,19 @@
  overscroll-behavior: contain;
 }
 
+.result-image-container {
+  width: 100%;
+  max-width: 700px;
+  margin: 40px auto 60px auto;
+}
+
+.result-image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  display: block;
+}
+
 
 
     .result-screen h2 {
@@ -201,7 +214,7 @@
 </head>
 <body>
   <div class="start-screen">
-    <img src="logoo.png" alt="Logo" class="logo">
+    <img src="logo.png" alt="Logo" class="logo">
     <h1>Swipe left or right!</h1>
     <button class="start-button" onclick="startQuiz()">Los geht’s!</button>
   </div>
@@ -224,6 +237,10 @@
       <a href="https://www.jazzupyourgerman.com" target="_blank">🌐</a>
       <a href="https://www.instagram.com/jazzupyourgerman/" target="_blank">📸</a>
     </div>
+<div class="result-image-container">
+  <img src="resultbild.jpg" alt="Ergebnisbild">
+</div>
+
 <div class="scroll-spacer"></div>
 
   </div>
@@ -458,14 +475,19 @@ function startQuiz() {
       }
     }
 
-    function nextQuestion() {
-      if (currentQuestion < questions.length - 1) {
-        currentQuestion++;
-        showQuestion();
-      } else if (currentQuestion === questions.length - 1) {
-        currentQuestion++;
-        showResult();
-      }
+function nextQuestion() {
+  // Noch nicht bei der letzten Frage
+  if (currentQuestion < questions.length - 1) {
+    currentQuestion++;
+    showQuestion();
+    return;
+  }
+
+  // Letzte Frage → Ergebnis anzeigen
+  showResult();
+}
+
+}
     }
 
     function prevQuestion() {
@@ -501,20 +523,27 @@ function showResult() {
 }
 
 
-    function restartQuiz() {
-      currentQuestion = 0;
-      score = 0;
-      incorrectAnswers = [];
-      userAnswers = [];
+function restartQuiz() {
+  currentQuestion = 0;
+  score = 0;
+  incorrectAnswers = [];
+  userAnswers = [];
 
-const resultScreen = document.querySelector('.result-screen');
-resultScreen.classList.remove('is-visible');
-resultScreen.style.display = 'none'; 
-resultScreen.scrollTop = 0;
+  const resultScreen = document.querySelector('.result-screen');
+  resultScreen.classList.remove('is-visible');
+  resultScreen.style.display = 'none';
+  resultScreen.scrollTop = 0;
 
-document.querySelector('.start-screen').style.display = 'flex';
-document.querySelector('.question-screen').style.display = 'none';
-document.body.style.overflow = 'hidden';
+  document.querySelector('.question-screen').style.display = 'none';
+  document.querySelector('.start-screen').style.display = 'flex';
+
+  document.body.style.overflow = 'hidden';
+
+  // optional: Progress-Bar zurücksetzen
+  document.getElementById('progress-bar').style.width = '0%';
+  document.getElementById('progress-text').textContent = '';
+}
+
 
 
     }
