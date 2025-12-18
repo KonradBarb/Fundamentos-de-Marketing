@@ -499,9 +499,10 @@ function showResult() {
   document.querySelector('.start-screen').style.display = 'none';
   document.querySelector('.question-screen').style.display = 'none';
 
-  const resultScreen = document.querySelector('.result-screen');
-  resultScreen.classList.add('is-visible');
-  resultScreen.scrollTop = 0;
+const resultScreen = document.querySelector('.result-screen');
+resultScreen.style.display = 'flex';      // ✅ NEU: garantiert sichtbar
+resultScreen.classList.add('is-visible');
+resultScreen.scrollTop = 0;
 
   document.body.style.overflow = 'hidden';
 
@@ -522,26 +523,30 @@ function showResult() {
 
 
 function restartQuiz() {
+  // ✅ Zustand komplett zurücksetzen
   currentQuestion = 0;
   score = 0;
   incorrectAnswers = [];
   userAnswers = [];
 
+  // ✅ Ergebnis-Seite wirklich weg
   const resultScreen = document.querySelector('.result-screen');
   resultScreen.classList.remove('is-visible');
+  resultScreen.style.display = 'none';   // ✅ jetzt ok, weil showResult später 'flex' setzt
   resultScreen.scrollTop = 0;
 
-  document.querySelector('.question-screen').style.display = 'none';
-  document.querySelector('.start-screen').style.display = 'flex';
+  // ✅ Mail beim Neustart wieder erlauben
+  startNotified = false;
+  startEventId = null;
 
-  document.body.style.overflow = 'hidden';
-
-  // optional: Progress-Bar zurücksetzen
+  // ✅ Progress zurücksetzen
   document.getElementById('progress-bar').style.width = '0%';
   document.getElementById('progress-text').textContent = '';
+
+  // ✅ Neustart soll sich wie "neu starten" anfühlen:
+  //    -> direkt wieder ins Quiz starten (inkl. Mail)
+  startQuiz();
 }
-
-
 
 
     // Swipe gesture support
