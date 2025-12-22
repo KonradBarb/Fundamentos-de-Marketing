@@ -263,85 +263,793 @@
 
 
 const questions =
-
-
 [
   {
-    "text": "Ich ___ fotografiert.",
-    "options": ["bin", "werde", "habe", "wurde"],
+    "text": "die TU hat ____, das ganze Gebäude zu schließen.",
+    "options": [
+      "entscheiden",
+      "entschieden"
+    ],
     "correct": 1
   },
   {
-    "text": "Das Lied ___ von Madonna gesungen.",
-    "options": ["ist", "wird", "hat", "war"],
+    "text": "„in order to do something“ heißt auf Deutsch:",
+    "options": [
+      "um etwas zu tun",
+      "ohne etwas zu tun"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Ich gehe früher, um ___ sparen.",
+    "options": [
+      "zu Energie",
+      "Energie zu"
+    ],
     "correct": 1
   },
   {
-    "text": "Zwecks ___ gehe ich ins Gym.",
-    "options": ["fit", "Fitness", "sportlich", "fit zu sein"],
+    "text": "der Grund",
+    "options": [
+      "ödül",
+      "sebep"
+    ],
     "correct": 1
   },
   {
-    "text": "Ich gehe ins Gym, um ___ zu sein.",
-    "options": ["Glück", "glücklich sein", "glückliche", "glücklich"],
-    "correct": 3
+    "text": "die Gründe (Plural)",
+    "options": [
+      "sebepler",
+      "arkadaşlar"
+    ],
+    "correct": 0
   },
   {
-    "text": "Ich bin wütend ___ dich.",
-    "options": ["gegen", "auf", "mit", "für"],
+    "text": "reichen (to be enough)",
+    "options": [
+      "kaybetmek",
+      "yeterli olmak"
+    ],
     "correct": 1
   },
   {
-    "text": "Ich habe ___ Hunger ___ Durst.",
-    "options": ["sowohl / als auch", "entweder / oder", "weder / noch", "zwar / aber"],
-    "correct": 2
-  },
-  {
-    "text": "Ich mag ___ Kaffee ___ Tee.",
-    "options": ["weder / noch", "sowohl / als auch", "zwar / aber", "entweder / aber"],
+    "text": "Das Geld ___ nicht.",
+    "options": [
+      "reichtet",
+      "reicht"
+    ],
     "correct": 1
   },
   {
-    "text": "Heute Abend gehe ich ___ ins Kino ___ in die Schwimmhalle.",
-    "options": ["sowohl / als auch", "zwar / aber", "entweder / oder", "weder / noch"],
-    "correct": 2
+    "text": "einstellen (Personen einstellen)",
+    "options": [
+      "işe almak",
+      "kapatmak"
+    ],
+    "correct": 0
   },
   {
-    "text": "Ich habe ___ schon Alkohol getrunken, ___ nie Heroin konsumiert.",
-    "options": ["weder / noch", "zwar / aber", "sowohl / als auch", "entweder / oder"],
+    "text": "engagieren (Personen engagieren)",
+    "options": [
+      "unutmak",
+      "angaje etmek / işe almak"
+    ],
     "correct": 1
   },
   {
-    "text": "Ich bin sehr ___, die Prüfung ist vorbei.",
-    "options": ["verwirrend", "wütend", "erleichtert", "einsam"],
-    "correct": 2
+    "text": "alle zwei Wochen",
+    "options": [
+      "iki haftada bir",
+      "her gün"
+    ],
+    "correct": 0
   },
   {
-    "text": "Er lebt ___, aber er ist nicht ___.",
-    "options": ["einsam / allein", "allein / einsam", "allein / allein", "einsam / einsam"],
+    "text": "einmal pro Woche",
+    "options": [
+      "ayda bir",
+      "haftada bir"
+    ],
     "correct": 1
   },
   {
-    "text": "Ich ___ meine Entscheidung.",
-    "options": ["hoffe", "zweifle", "bereue", "beende"],
-    "correct": 2
-  },
-  {
-    "text": "Darf ich dich ___ ein Brot bitten?",
-    "options": ["für", "mit", "um", "auf"],
-    "correct": 2
-  },
-  {
-    "text": "___ ich ein Brot bekommen?",
-    "options": ["Darf", "Dürfte", "Muss", "Kann"],
+    "text": "Mist!",
+    "options": [
+      "Tebrikler!",
+      "Kahretsin!"
+    ],
     "correct": 1
   },
   {
-    "text": "Das ist jetzt ___ mir.",
-    "options": ["vor", "über", "zwischen", "hinter"],
-    "correct": 3
+    "text": "Staub wischen",
+    "options": [
+      "toz almak",
+      "bulaşık yıkamak"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "A ist wie B.",
+    "options": [
+      "A, B gibidir.",
+      "A, B değildir."
+    ],
+    "correct": 0
+  },
+  {
+    "text": "der automatische Staubsauger",
+    "options": [
+      "robot süpürge",
+      "çamaşır makinesi"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "saugen",
+    "options": [
+      "boyamak",
+      "süpürmek / vakumlamak"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "die Botschaft (die Nachricht)",
+    "options": [
+      "mesaj",
+      "bilet"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "verbal",
+    "options": [
+      "sessiz",
+      "sözel"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "nonverbal",
+    "options": [
+      "sözsüz",
+      "sözel"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "die Gebärdensprache",
+    "options": [
+      "anadil",
+      "işaret dili"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "die Gebärde",
+    "options": [
+      "jest / el hareketi",
+      "tatil"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "der Gesichtsausdruck",
+    "options": [
+      "saç rengi",
+      "yüz ifadesi"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "das Zeichen (Symbol)",
+    "options": [
+      "şeker",
+      "işaret / sembol"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "wahrscheinlich",
+    "options": [
+      "muhtemelen",
+      "asla"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "vermutlich",
+    "options": [
+      "kesinlikle değil",
+      "muhtemelen"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "„krass“ (Adverb): Der Film ist krass brutal.",
+    "options": [
+      "falsch",
+      "richtig"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "„krass“ (Adjektiv): Das ist ein krasser Film.",
+    "options": [
+      "falsch",
+      "richtig"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "sich wundern über etwas",
+    "options": [
+      "bir şeye şaşırmak",
+      "bir şeyi satın almak"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "die Absicht (Intention)",
+    "options": [
+      "sonuç",
+      "niyet"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "fähig",
+    "options": [
+      "yetenekli / yapabilir",
+      "yorgun"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "die Fähigkeit",
+    "options": [
+      "yetenek",
+      "fiyat"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Bist du fähig, konstruktiv zu streiten?",
+    "options": [
+      "falsch",
+      "richtig"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "die Pflicht",
+    "options": [
+      "zorunluluk",
+      "eğlence"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Es hängt davon ab.",
+    "options": [
+      "richtig",
+      "falsch"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Es hängt davon ab, ___ ich streite.",
+    "options": [
+      "mit wer",
+      "mit wem"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "die Möglichkeit",
+    "options": [
+      "yasak",
+      "imkân"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Ist es möglich, mit dem Auto in die Türkei zu fahren?",
+    "options": [
+      "falsch",
+      "richtig"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "die Möglichkeit + Infinitiv: Es gibt die Möglichkeit, etwas zu machen.",
+    "options": [
+      "falsch",
+      "richtig"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "der Auftrag",
+    "options": [
+      "görev",
+      "kaza"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Ich habe den Auftrag, dieses Buch zu lesen.",
+    "options": [
+      "richtig",
+      "falsch"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Vermutung: Sie ___ krank sein.",
+    "options": [
+      "konnte",
+      "könnte"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Vermutung (stark): Sie ___ krank sein.",
+    "options": [
+      "will",
+      "muss"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Vermutung (höflich): Sie ___ krank sein.",
+    "options": [
+      "dürfte",
+      "durfte"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Definitiv: Sie ist krank. (sehr sicher)",
+    "options": [
+      "richtig",
+      "falsch"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Vielleicht ist sie krank. (unsicher)",
+    "options": [
+      "falsch",
+      "richtig"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "„Er soll mehr Sport machen.“ bedeutet hier:",
+    "options": [
+      "Er möchte es unbedingt.",
+      "Der Arzt empfiehlt es (Autorität)."
+    ],
+    "correct": 1
+  },
+  {
+    "text": "„Er kann schwimmen.“ bedeutet hier:",
+    "options": [
+      "Er ist dazu fähig.",
+      "Er hat keine Erlaubnis."
+    ],
+    "correct": 0
+  },
+  {
+    "text": "„Er darf gehen.“ bedeutet hier:",
+    "options": [
+      "Er muss bleiben.",
+      "Er hat die Erlaubnis."
+    ],
+    "correct": 1
+  },
+  {
+    "text": "„Er muss lernen.“ bedeutet hier:",
+    "options": [
+      "Er will es nur.",
+      "Es ist unvermeidbar."
+    ],
+    "correct": 1
+  },
+  {
+    "text": "unter Leuten sein",
+    "options": [
+      "yalnız kalmak",
+      "insanların arasında olmak"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "entstehen",
+    "options": [
+      "bitirmek",
+      "ortaya çıkmak"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Ich denke nicht, dass eine Freundschaft entstehen kann.",
+    "options": [
+      "richtig",
+      "falsch"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "verbringen",
+    "options": [
+      "zaman geçirmek",
+      "çizmek"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Ich verbringe meine Zeit im Büro.",
+    "options": [
+      "richtig",
+      "falsch"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Zeit vergeht schnell.",
+    "options": [
+      "falsch",
+      "richtig"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "vergehen (Zeit)",
+    "options": [
+      "geçip gitmek",
+      "yemek yapmak"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Es hat mit dem Alter zu tun.",
+    "options": [
+      "falsch",
+      "richtig"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "sozialer werden",
+    "options": [
+      "daha sessiz olmak",
+      "daha sosyal olmak"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "freundschaftliche Beziehung",
+    "options": [
+      "arkadaşça ilişki",
+      "resmî ceza"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "berufliche Beziehung",
+    "options": [
+      "aile yemeği",
+      "iş ilişkisi"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "kollegiale Beziehung",
+    "options": [
+      "iş arkadaşı ilişkisi",
+      "spor sakatlığı"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Das verändert meine Pläne.",
+    "options": [
+      "falsch",
+      "richtig"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "die Wahl",
+    "options": [
+      "seçim",
+      "borç"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "die Abstimmung",
+    "options": [
+      "oylama",
+      "bilet kontrolü"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "die Bekannten",
+    "options": [
+      "düşmanlar",
+      "tanıdıklar"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Hast du deine Ziele erreicht?",
+    "options": [
+      "falsch",
+      "richtig"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "sich über etwas freuen",
+    "options": [
+      "bir şeye sevinmek",
+      "bir şeyden korkmak"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Freust du dich darüber?",
+    "options": [
+      "richtig",
+      "falsch"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "stolz auf etwas sein",
+    "options": [
+      "bir şeyi reddetmek",
+      "bir şeyle gurur duymak"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Ich bin stolz darauf, dass ich das geschafft habe.",
+    "options": [
+      "falsch",
+      "richtig"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "mindestens",
+    "options": [
+      "en az",
+      "en fazla"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Ich gehe in die Bar, um Menschen zu treffen. (Ziel)",
+    "options": [
+      "richtig",
+      "falsch"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Es ist nicht einfach, Menschen zu treffen. (ohne Ziel, nur Aussage)",
+    "options": [
+      "falsch",
+      "richtig"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Um neue Leute kennenzulernen, ___ ich oft in die Bar.",
+    "options": [
+      "gehen",
+      "gehe"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Ich rasiere mich. (reflexiv: mich)",
+    "options": [
+      "falsch",
+      "richtig"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Ich rasiere mir meinen Bart. (Dativ + Akkusativ)",
+    "options": [
+      "richtig",
+      "falsch"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Du rasierst ___ deinen Bart.",
+    "options": [
+      "dir",
+      "dich"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Er rasiert ___ seinen Bart.",
+    "options": [
+      "ihn",
+      "sich"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Wir rasieren ___ unseren Bart.",
+    "options": [
+      "wir",
+      "uns"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Ihr rasiert ___ euren Bart.",
+    "options": [
+      "euch",
+      "euer"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Sie rasieren ___ ihren Bart.",
+    "options": [
+      "sich",
+      "sie"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Ich bitte dich, mir einen Kaffee zu holen. (Bitte + Infinitiv)",
+    "options": [
+      "falsch",
+      "richtig"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Ich sage dir, dass du mir einen Kaffee holen sollst. (dass-Satz)",
+    "options": [
+      "falsch",
+      "richtig"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Ich frage dich, ob du mir einen Kaffee bringen kannst. (Frage)",
+    "options": [
+      "falsch",
+      "richtig"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Intention (Wunsch): Ich ___ etwas machen.",
+    "options": [
+      "will",
+      "soll"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Auftrag (Autorität): Ich ___ etwas machen.",
+    "options": [
+      "will",
+      "soll"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Fähigkeit: Ich ___ etwas machen.",
+    "options": [
+      "muss",
+      "kann"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Unvermeidbarkeit: Ich ___ etwas machen.",
+    "options": [
+      "muss",
+      "darf"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "Erlaubnis: Ich ___ etwas machen.",
+    "options": [
+      "kann",
+      "darf"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "wissen (Perfekt)",
+    "options": [
+      "gewissen",
+      "gewusst"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "bewusst",
+    "options": [
+      "bilinçli",
+      "unutkan"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "unbewusst",
+    "options": [
+      "bilinçsiz",
+      "mutlu"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "primäre Emotionen",
+    "options": [
+      "iş planı",
+      "birincil duygular"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "die Wut",
+    "options": [
+      "öfke",
+      "sevinç"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "die Scham",
+    "options": [
+      "cesaret",
+      "utanç"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "die Freude",
+    "options": [
+      "sevinç",
+      "korku"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "die Trauer",
+    "options": [
+      "sabır",
+      "keder"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "der Ekel",
+    "options": [
+      "iğrenme",
+      "saygı"
+    ],
+    "correct": 0
   }
 ]
+
 
 ;
 
@@ -389,7 +1097,7 @@ function notifyTeacherTestStarted() {
 
   const params = new URLSearchParams({
     secret: SECRET,
-    studentName: "Stefan",
+    studentName: "Begüm",
     eventType: "start",
     quizTitle: document.title,
     pageUrl: window.location.href,
