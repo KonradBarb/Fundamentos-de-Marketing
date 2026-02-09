@@ -264,43 +264,163 @@
 
 const questions =
 [
-  { "text": "in dieser Zeit", "options": ["bu dönemde", "bu yerde"], "correct": 0 },
-  { "text": "in dieser Jahreszeit", "options": ["bu günde", "bu mevsimde"], "correct": 1 },
-  { "text": "das Erdbeben", "options": ["yangın", "deprem"], "correct": 1 },
-  { "text": "durchschlafen", "options": ["deliksiz uyumak", "uyanmak"], "correct": 0 },
-  { "text": "frieren", "options": ["üşümek", "terlemek"], "correct": 0 },
-  { "text": "verständlich", "options": ["anlaşılır", "karmaşık"], "correct": 0 },
-  { "text": "höflich", "options": ["kaba", "kibar"], "correct": 1 },
-
-  { "text": "Gestern wollte ich den ganzen Tag im Bett ___.", "options": ["gehen", "bleiben"], "correct": 1 },
-  { "text": "Vielleicht hat das etwas damit zu ___.", "options": ["sein", "tun"], "correct": 1 },
-  { "text": "Ich gehe ___ die USA.", "options": ["auf", "in"], "correct": 1 },
-  { "text": "Ich war mit der Entscheidung ___.", "options": ["einverstanden", "einverstand"], "correct": 0 },
-  { "text": "Ich musste ein Einreiseformular ___.", "options": ["ausfüllen", "ausfülle"], "correct": 0 },
-  { "text": "Wir müssen das Thema bald ___.", "options": ["klären", "klärt"], "correct": 0 },
-  { "text": "Viele Leute kommen nicht durch den Flughafen ___.", "options": ["durch", "vorbei"], "correct": 1 },
-
-  { "text": "Ich versuche, informiert zu ___.", "options": ["bleiben", "bleibt"], "correct": 0 },
-  { "text": "Am Tag ist es hell, aber ___ ist es sehr dunkel.", "options": ["nachts", "morgen"], "correct": 0 },
-  { "text": "Im Winter wird es sehr früh ___.", "options": ["dunkel", "dunkel wird"], "correct": 0 },
-  { "text": "Ich habe mich dagegen ___, früh ins Bett zu gehen.", "options": ["gewehrt", "wehren"], "correct": 0 },
-  { "text": "Ich habe mich dagegen gewehrt, ___ ich früh schlafen gehe.", "options": ["dass", "ob"], "correct": 0 },
-  
-  { "text": "unhöflich", "options": ["kaba", "nazik"], "correct": 0 },
-  { "text": "genehmigen / erlauben", "options": ["yasaklamak", "izin vermek"], "correct": 1 },
-  { "text": "annehmen / akzeptieren", "options": ["reddetmek", "kabul etmek"], "correct": 1 },
-  { "text": "einverstanden sein", "options": ["karşı çıkmak", "kabul etmek"], "correct": 1 },
-  { "text": "das Formular", "options": ["form", "belge"], "correct": 0 },
-  { "text": "ein Formular ausfüllen", "options": ["boş bırakmak", "doldurmak"], "correct": 1 },
-
-  { "text": "Vor ein paar Monaten hatte ich ein Problem ___.", "options": ["damit", "dafür"], "correct": 0 },
-  { "text": "Ich wollte meinen Vortrag über Zoom ___.", "options": ["halten", "halte"], "correct": 0 },
-  { "text": "Am ___ ist es hell, nachts ist es dunkel.", "options": ["Tag", "Nacht"], "correct": 0 },
-  { "text": "Ich kann dort nicht ___ gehen.", "options": ["spazieren", "Spaziergang"], "correct": 0 },
-  { "text": "Ich habe mich dagegen ___, früh ins Bett zu gehen.", "options": ["gewehrt", "wehren"], "correct": 0 },
-  { "text": "Ich habe mich dagegen gewehrt, ___ ich früh schlafen gehe.", "options": ["dass", "ob"], "correct": 0 },
-  { "text": "England hat sich gegen Deutschland ___.", "options": ["gewehrt", "wehrte sich"], "correct": 1 }
+  {
+    "text": "Es ist heute sehr ___, deshalb ist es draußen unangenehm.",
+    "options": ["frostig", "warm"],
+    "correct": 0
+  },
+  {
+    "text": "tragen",
+    "options": ["taşımak", "giymek"],
+    "correct": 1
+  },
+  {
+    "text": "der Aufzug",
+    "options": ["merdiven", "asansör"],
+    "correct": 1
+  },
+  {
+    "text": "Sie haben Angst und sind ___.",
+    "options": ["wütend", "ruhig"],
+    "correct": 0
+  },
+  {
+    "text": "der Lärm (draußen)",
+    "options": ["gürültü", "sessizlik"],
+    "correct": 0
+  },
+  {
+    "text": "Ich habe die E-Mail an die Gebäuderezeption geschickt, um ___, wer verantwortlich ist.",
+    "options": ["herauszufinden", "zu vermeiden"],
+    "correct": 0
+  },
+  {
+    "text": "Wisst ihr, wer dafür ___ ist?",
+    "options": ["verantwortlich", "zufällig"],
+    "correct": 1
+  },
+  {
+    "text": "machbar",
+    "options": ["imkânsız", "yapılabilir"],
+    "correct": 1
+  },
+  {
+    "text": "sich um etwas kümmern",
+    "options": ["ilgilenmek", "kaçmak"],
+    "correct": 0
+  },
+  {
+    "text": "Er ist verantwortlich ___ den Umzug.",
+    "options": ["für", "mit"],
+    "correct": 0
+  },
+  {
+    "text": "Diese Dinge sind zu schwer zu ___.",
+    "options": ["tragen", "tragen lassen"],
+    "correct": 0
+  },
+  {
+    "text": "die Verantwortung übernehmen",
+    "options": ["sorumluluktan kaçmak", "sorumluluk almak"],
+    "correct": 1
+  },
+  {
+    "text": "Das gilt ___ Arbeitsunfall.",
+    "options": ["als", "wie"],
+    "correct": 1
+  },
+  {
+    "text": "Er hat es geschafft, einen Job zu finden.",
+    "options": ["başarmak", "kaybetmek"],
+    "correct": 0
+  },
+  {
+    "text": "Er ___ unser Büro.",
+    "options": ["managt", "verliert"],
+    "correct": 0
+  },
+  {
+    "text": "Weißt du, wer verantwortlich ist?",
+    "options": ["Wer ist verantwortlich?", "Wer Verantwortung hat?"],
+    "correct": 0
+  },
+  {
+    "text": "Er weigert sich, die Möbel zu ___.",
+    "options": ["tragen", "tragen zu"],
+    "correct": 1
+  },
+  {
+    "text": "Weißt du, wer die Sachen ___ muss?",
+    "options": ["tragen", "trägt"],
+    "correct": 1
+  },
+  {
+    "text": "Ich habe heute nichts ___.",
+    "options": ["hochgetragen", "hochtragen"],
+    "correct": 0
+  },
+  {
+    "text": "etwas die Treppe ___ tragen",
+    "options": ["hoch", "oben"],
+    "correct": 0
+  },
+  {
+    "text": "Steht im Vertrag, wer die Sachen in diesem Fall ___ muss?",
+    "options": ["tragen", "trägt"],
+    "correct": 0
+  },
+  {
+    "text": "von halb acht ___ elf",
+    "options": ["bis", "zu"],
+    "correct": 1
+  },
+  {
+    "text": "in der siebten Etage",
+    "options": ["yedinci kat", "altıncı kat"],
+    "correct": 1
+  },
+  {
+    "text": "Ich vergleiche ___ den letzten 20 Jahren.",
+    "options": ["mit", "von"],
+    "correct": 0
+  },
+  {
+    "text": "Die Männer, die beim Umzug ___, sind faul.",
+    "options": ["helfen", "helft"],
+    "correct": 0
+  },
+  {
+    "text": "Ich helfe ___ Freunden beim Umzug.",
+    "options": ["meinen", "meine"],
+    "correct": 0
+  },
+  {
+    "text": "Ich ziehe um. Mein Freund hilft ___ beim Umzug.",
+    "options": ["mir", "mich"],
+    "correct": 1
+  },
+  {
+    "text": "Ich sehe ___ großen Mann.",
+    "options": ["einen", "einem"],
+    "correct": 1
+  },
+  {
+    "text": "Ich helfe ___ größeren Frau.",
+    "options": ["einer", "eine"],
+    "correct": 0
+  },
+  {
+    "text": "Das sind die ___ Mädchen.",
+    "options": ["rennenden", "gerannten"],
+    "correct": 0
+  },
+  {
+    "text": "Ich bin am ___.",
+    "options": ["ungeduldigsten", "ungeduldigen"],
+    "correct": 0
+  }
 ]
+
 
 ;
 
